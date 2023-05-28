@@ -1,0 +1,26 @@
+# CMake generation dependency list for this directory.
+D:/CG/vcpkg-master/scripts/buildsystems/vcpkg.cmake
+D:/Codes/CN_1/CMakeLists.txt
+D:/Codes/CN_1/build/CMakeFiles/3.24.1/CMakeCCompiler.cmake
+D:/Codes/CN_1/build/CMakeFiles/3.24.1/CMakeCXXCompiler.cmake
+D:/Codes/CN_1/build/CMakeFiles/3.24.1/CMakeRCCompiler.cmake
+D:/Codes/CN_1/build/CMakeFiles/3.24.1/CMakeSystem.cmake
+D:/Programs_x86/Cmake/share/cmake-3.24/Modules/CMakeCInformation.cmake
+D:/Programs_x86/Cmake/share/cmake-3.24/Modules/CMakeCXXInformation.cmake
+D:/Programs_x86/Cmake/share/cmake-3.24/Modules/CMakeCommonLanguageInclude.cmake
+D:/Programs_x86/Cmake/share/cmake-3.24/Modules/CMakeDependentOption.cmake
+D:/Programs_x86/Cmake/share/cmake-3.24/Modules/CMakeGenericSystem.cmake
+D:/Programs_x86/Cmake/share/cmake-3.24/Modules/CMakeInitializeConfigs.cmake
+D:/Programs_x86/Cmake/share/cmake-3.24/Modules/CMakeLanguageInformation.cmake
+D:/Programs_x86/Cmake/share/cmake-3.24/Modules/CMakeRCInformation.cmake
+D:/Programs_x86/Cmake/share/cmake-3.24/Modules/CMakeSystemSpecificInformation.cmake
+D:/Programs_x86/Cmake/share/cmake-3.24/Modules/CMakeSystemSpecificInitialize.cmake
+D:/Programs_x86/Cmake/share/cmake-3.24/Modules/Compiler/CMakeCommonCompilerMacros.cmake
+D:/Programs_x86/Cmake/share/cmake-3.24/Modules/Compiler/MSVC-C.cmake
+D:/Programs_x86/Cmake/share/cmake-3.24/Modules/Compiler/MSVC-CXX.cmake
+D:/Programs_x86/Cmake/share/cmake-3.24/Modules/Compiler/MSVC.cmake
+D:/Programs_x86/Cmake/share/cmake-3.24/Modules/Platform/Windows-MSVC-C.cmake
+D:/Programs_x86/Cmake/share/cmake-3.24/Modules/Platform/Windows-MSVC-CXX.cmake
+D:/Programs_x86/Cmake/share/cmake-3.24/Modules/Platform/Windows-MSVC.cmake
+D:/Programs_x86/Cmake/share/cmake-3.24/Modules/Platform/Windows.cmake
+D:/Programs_x86/Cmake/share/cmake-3.24/Modules/Platform/WindowsPaths.cmake

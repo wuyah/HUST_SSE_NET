@@ -1,0 +1,5 @@
+D:/Codes/CN_1/build/CMakeFiles/xdb.dir
+D:/Codes/CN_1/build/CMakeFiles/Net_2.dir
+D:/Codes/CN_1/build/CMakeFiles/PACKAGE.dir
+D:/Codes/CN_1/build/CMakeFiles/ALL_BUILD.dir
+D:/Codes/CN_1/build/CMakeFiles/ZERO_CHECK.dir

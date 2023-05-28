@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dynamic Map Update</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="text/javascript" src="https://assets.pyecharts.org/assets/v5/echarts.min.js"></script>
+    <script type="text/javascript" src="https://assets.pyecharts.org/assets/v5/maps/china.js"></script>
+</head>
+<body>
+    <div id="barChartContainer" class="chart-container" style="width: 900px; height: 400px;"></div>
+    <div id="chartContainer" class="chart-container" style="width: 900px; height: 500px;"></div>
+
+    <script>
+        var myChart;
+        var nameMapping = {
+            '北京': '北京市',
+            '天津': '天津市',
+            '上海': '上海市',
+            '重庆': '重庆市',
+            '澳门': '澳门特别行政区',
+            '香港': '香港特别行政区',
+            '新疆': '新疆维吾尔自治区',
+            '西藏': '西藏自治区',
+            '宁夏': '宁夏回族自治区',
+            '广西': '广西壮族自治区',
+            '内蒙古': '内蒙古自治区'
+        };
+          
+        function convertData(data) {
+            var convertedData = [];
+            data.forEach(function(item) {
+              var name = nameMapping[item.name] || item.name;
+              convertedData.push({ name: name, value: item.value });
+            });
+            return convertedData;
+        }
+          
+
+        // 初始化地图
+        function initMap() {
+            // 创建echarts实例
+            myChart = echarts.init(document.getElementById('chartContainer'));
+            var barChart = echarts.init(document.getElementById('barChartContainer'));
+
+            // 渲染地图
+            renderMap();
+        }
+
+        // 渲染地图
+        function renderMap() {
+            // 发送Ajax请求获取数据
+            $.ajax({
+                type: 'GET',
+                url: '/get_data', // Replace with the correct URL or endpoint
+                success: function(response) {
+                    // 构造地图数据
+                    var mapData = [];
+                    mapData = convertData(response);
+                    var max = mapData.reduce(function(prev, curr) {
+                        return Math.max(prev, curr.value);
+                    }, 0);                    
+                    // 设置地图配置项
+                    var option = {
+                        "animationThreshold": 2000,
+                        "animationDuration": 1000,
+                        "animationEasing": "cubicOut",
+                        "animationDelay": 0,
+                        "animationDurationUpdate": 300,
+                        "animationEasingUpdate": "cubicOut",
+                        "animationDelayUpdate": 0,
+                        "aria": {
+                            "enabled": false
+                        },
+                        "color": [
+                            "#5470c6",
+                            "#91cc75",
+                            "#fac858",
+                            "#ee6666",
+                            "#73c0de",
+                            "#3ba272",
+                            "#fc8452",
+                            "#9a60b4",
+                            "#ea7ccc"
+                        ],
+                        series: [
+                            {
+                                type: 'map',
+                                map: 'china',
+                                data: mapData,
+                                "roam": true,
+                                "aspectScale": 0.75,
+                                "nameProperty": "name",
+                                "selectedMode": false,
+                                "zoom": 1,
+                                "zlevel": 0,
+                                "z": 2,
+                                "seriesLayoutBy": "column",
+                                "datasetIndex": 0,
+                                "mapValueCalculation": "sum",
+                                "showLegendSymbol": false,
+                                "emphasis": {}                    
+                            }
+                        ],
+                        "legend": [
+                        {
+                            "data": [
+                                "\u6570\u636e\u5305\u6570\u91cf"
+                            ],
+                            "selected": {},
+                            "show": true,
+                            "padding": 5,
+                            "itemGap": 10,
+                            "itemWidth": 25,
+                            "itemHeight": 14,
+                            "backgroundColor": "transparent",
+                            "borderColor": "#ccc",
+                            "borderWidth": 1,
+                            "borderRadius": 0,
+                            "pageButtonItemGap": 5,
+                            "pageButtonPosition": "end",
+                            "pageFormatter": "{current}/{total}",
+                            "pageIconColor": "#2f4554",
+                            "pageIconInactiveColor": "#aaa",
+                            "pageIconSize": 15,
+                            "animationDurationUpdate": 800,
+                            "selector": false,
+                            "selectorPosition": "auto",
+                            "selectorItemGap": 7,
+                            "selectorButtonGap": 10
+                        }
+                    ],
+                    "tooltip": {
+                        "show": true,
+                        "trigger": "item",
+                        "triggerOn": "mousemove|click",
+                        "axisPointer": {
+                            "type": "line"
+                        },
+                        "showContent": true,
+                        "alwaysShowContent": false,
+                        "showDelay": 0,
+                        "hideDelay": 100,
+                        "enterable": false,
+                        "confine": false,
+                        "appendToBody": false,
+                        "transitionDuration": 0.4,
+                        "textStyle": {
+                            "fontSize": 14
+                        },
+                        "borderWidth": 0,
+                        "padding": 5,
+                        "order": "seriesAsc"
+                    },
+                    "title": [
+                        {
+                            "show": true,
+                            "text": "China IP Region Map",
+                            "target": "blank",
+                            "subtarget": "blank",
+                            "padding": 5,
+                            "itemGap": 10,
+                            "textAlign": "auto",
+                            "textVerticalAlign": "auto",
+                            "triggerEvent": false
+                        }
+                    ],
+                    "visualMap": {
+                        "show": true,
+                        "type": "continuous",
+                        "min": 0,
+                        "max": 4000,
+                        "inRange": {
+                            "color": [
+                                "#ffffff",
+                                "#eac763",
+                                "#d94e5d"
+                            ]
+                        },
+                        "calculable": true,
+                        "inverse": false,
+                        "splitNumber": 5,
+                        "hoverLink": true,
+                        "orient": "vertical",
+                        "padding": 5,
+                        "showLabel": true,
+                        "itemWidth": 20,
+                        "itemHeight": 140,
+                        "borderWidth": 0
+                    }
+                };
+
+                    // 使用配置项渲染地图
+                myChart.setOption(option);
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+        }
+
+        $(document).ready(function() {
+            // 页面加载时初始化地图
+            initMap();
+
+            // 每隔1秒重新渲染地图
+            setInterval(renderMap, 1000);
+        });
+    </script>
+</body>
+</html>
